@@ -1,4 +1,5 @@
-/* 
+![Maneki Neko the good luck coin tracking node app](https://raw.githubusercontent.com/Jaredude/manekineko/master/Maneki-Neko-PNG-Transparent-Image.png)
+
     Maneki is just a cat that keeps track of coins using a basic shell for running:
         source processors that control 
             tx processors
@@ -67,4 +68,3 @@
 
     GOOD LUCK!
 ****************************************************************************************************************************************************
-*/
