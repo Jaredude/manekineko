@@ -1,0 +1,83 @@
+{
+    "currency_display": "USD"
+    , "currency_base": "BTC"
+    , "URL_EXCHANGE_RATES": "https://min-api.cryptocompare.com/data/price?fsym=<CURRENCY_BASE>&tsyms=<CURRENCY_LIST_CSV>"
+    , "URL_EXCHANGE_RATE_HISTORICAL": "https://min-api.cryptocompare.com/data/pricehistorical?fsym=<CURRENCY_BASE>&tsyms=<CURRENCY_LIST_CSV>&ts=<TX_TIMESTAMP>&extraParams=maneki"
+    , "DEFAULT_PROCESSOR_TX": "chainz.cryptoid.info.js"
+    , "MAX_WAIT_COUNT_RATEHISTORY": 30
+    , "portfolio": [
+        {
+            "symbol": "btc"
+            , "processor": "nicehash.transactions.js"
+            , "addresses": [
+                {
+                    "address": "nicehash-tx.csv"
+                    , "type": "mining"
+                    , "track": 1
+                }
+            ]
+        }
+        ,
+        {
+            "symbol": "btc"
+            , "processor": "chainz.cryptoid.info.js"
+            , "addresses": [
+                {
+                    "address": "19rApYFKU46eShf7cuZ1kQGaSd6s2xKhab"
+                    , "type": "mining"
+                    , "track": 1
+                    , "_track_options_": "MUST BE HANDLED IN THE PROCESSOR! 0: nothing; 1: deposits; 2: withdrawals; 3: both;"
+                }
+            ]
+        }
+        ,
+        {
+            "symbol": "dash"
+            , "addresses": [
+                {
+                    "address": "XhRzjQCtrTbBufjyWAgoccQ9T459Ky7LFz"
+                    , "type": "mining"
+                    , "track": 1 
+                    , "_track_options_": "MUST BE HANDLED IN THE PROCESSOR! 0: nothing; 1: deposits; 2: withdrawals; 3: both;"
+                }
+            ]
+        }
+        ,
+        {
+            "symbol": "LTC"
+            , "addresses": [
+                {
+                    "address": "LLV5UR2Ganmarqm8H8GpcSyW2dgHJLXe5k"
+                    , "type": "mining"
+                    , "track": 1 
+                    , "_track_options_": "MUST BE HANDLED IN THE PROCESSOR! 0: nothing; 1: deposits; 2: withdrawals; 3: both;"
+                }
+            ]
+        }
+        ,
+        {
+            "symbol": "VTC"
+            , "addresses": [
+                {
+                    "address": "Vev71c5SGQCNscdns8d7GKKD6F8MNzsXad"
+                    , "type": "mining"
+                    , "track": 1 
+                    , "_track_options_": "MUST BE HANDLED IN THE PROCESSOR! 0: nothing; 1: deposits; 2: withdrawals; 3: both;"
+                }
+            ]
+        }
+        ,
+        {
+            "symbol": "ETH"
+            , "processor": "api.etherscan.io.js"
+            , "addresses": [
+                {
+                    "address": "0xd2e02508c2606f40a3b9B9AC2C1fDc548F85FA65"
+                    , "type":"mining"
+                    , "track": 1
+                    , "_track_options_": "MUST BE HANDLED IN THE PROCESSOR! 0: nothing; 1: deposits; 2: withdrawals; 3: both;"
+                }
+            ]
+        }        
+    ]
+}
