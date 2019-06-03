@@ -24,16 +24,17 @@ let OutstandingCalls = () => processcount;
 
 let process = function(objP) {
     processcount++;
-    console.log(objP);
+    // console.log(objP);
     let filelocation = objP.ADDRESS.address;
     let fileraw = fs.readFileSync(filelocation, 'utf8');
     let csv = papaparse.parse(fileraw, {
         header: true
+        , skipEmptyLines: true
     });
 
     let A_response = csv.data.reduce((map, currentValue, currentIndex, array1) => {
         //Date,Comment,Amount,BTC/USD
-        let thehash = currentValue.Comment;
+        let thehash = `${currentValue.Comment} ${currentValue.Date}`;
         let thechange = parseFloat(currentValue.Amount.split(' ')[0]);
         let thetime_utc = currentValue.Date;
 
@@ -46,7 +47,9 @@ let process = function(objP) {
         return map;
 
     }, []);
-    objP.TXPROCESSOR_MAIN(objP.COIN, objP.ADDRESS, A_response)
+    // Need to make the hierarchy nicehash.csv > description + date as the hash instead of
+    let laddress = {'theaddress': objP.ADDRESS.address, 'thehash': 'hash'};
+    objP.TXPROCESSOR_MAIN(objP.COIN, laddress, A_response)
     processcount--;
     ;
     lastcall = Date.now();

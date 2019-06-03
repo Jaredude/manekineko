@@ -27,7 +27,7 @@ function SumTransactions(objP) {
             Object.keys(thecoin[elementTx]).reduce((map, item) => { // Get each address value
             cointxcount++;                
             if (typeof thecoin[elementTx][item] === 'object') map.push(item); return map;}, []).forEach((elementAddress, eaIndex) => {
-                if (thecoin[elementTx][elementAddress].tx_value > 0 && thecoin[elementTx][elementAddress].type !== 'transfer') {
+                if (thecoin[elementTx][elementAddress].type !== 'transfer') {
                     if (!fileCRch[thecoin[elementTx][elementAddress].time_utc]) { // Somehow we are missing the rates for the date
                         fileCRch[thecoin[elementTx][elementAddress].time_utc] = { 'x': 'x' };
                         HistoricalRates();
@@ -63,8 +63,10 @@ function SumTransactions(objP) {
 
                         Transactions2CSV(elementCoin, thecoin[elementTx][elementAddress].time_utc,thecoin[elementTx][elementAddress].tx_value, txBaseAdd, txDisplayAdd, txBaseNow, txDisplayNow);
                     }
+                } else if (thecoin[elementTx][elementAddress].tx_value < 0) {
+                    console.log('negative')
                 } else {
-                    // console.log (thecoin + ': ' + elementTx + '; ' + thecoin[elementTx][elementAddress].type);
+                    console.log (thecoin + ': ' + elementTx + '; ' + thecoin[elementTx][elementAddress].type);
                 }
             });
         }

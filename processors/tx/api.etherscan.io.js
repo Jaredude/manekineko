@@ -16,12 +16,12 @@ let process = function(objP) {
     let waittocall = 5000 - (Date.now() - lastcall);
     if (waittocall > 0) console.log(waittocall);
     processcount++;
-    console.log(objP);
+    // console.log(objP);
     let url_tx_coin_address = '';
     let url_tx_coin = config.URL_TX; //.replace('<COIN>', objP.COIN);
     url_tx_coin_address = url_tx_coin.replace('<ADDRESS>', objP.ADDRESS.address);
     url_tx_coin_address = url_tx_coin_address.replace('<RECORDCOUNT>', objP.RECORDCOUNT);
-    console.log(url_tx_coin_address); // This is the URL we're going to use to caputre all the txs
+    console.log('log:' + url_tx_coin_address); // This is the URL we're going to use to caputre all the txs
     let ret = axios.get(url_tx_coin_address)
         .then((response) => {
             let A_response = response.data.result.reduce((map, currentValue, currentIndex, array1) => {

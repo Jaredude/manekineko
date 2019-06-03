@@ -49,9 +49,17 @@ function ProcessCoinAddressTransactions(thecoin, theaddress, A_txs) {
         let thehash_API = APItx[thehash];
         let currency_display_value, currency_base_value;
 
+        let laddress = theaddress;
+        let lhash = thehash;
+        if (typeof theaddress === 'object') {
+            lhash = theaddress.theaddress;
+            laddress = elementtx[theaddress.thehash];
+        }
+        thehash = lhash;
+
         if (!thehash_API) { // If this hash doesn't exist on the API object create it so we can reuse it
-            APItx[thehash] = {};
-            thehash_API = APItx[thehash];
+            APItx[lhash] = {};
+            thehash_API = APItx[lhash];
         }
         thehash_API.tx_value = (thehash_API.tx_value || 0) + elementtx.change; // add the tx change value
         thehash_API.time_utc = new Date(elementtx.time_utc).formatYYYYMMDD();
@@ -59,14 +67,14 @@ function ProcessCoinAddressTransactions(thecoin, theaddress, A_txs) {
         if (!fileTXtx[thecoin]) { // Check for the coin under the transactions object
             fileTXtx[thecoin] = {};
         }
-        if (!fileTXtx[thecoin][thehash]) { // Check for this hash under the transactions.coin
-            fileTXtx[thecoin][thehash] = {};
+        if (!fileTXtx[thecoin][lhash]) { // Check for this hash under the transactions.coin
+            fileTXtx[thecoin][lhash] = {};
         }
 
         // set objTXs values
         if (!objTXs.transactions[thecoin]) objTXs.transactions[thecoin] = {};
-        if (!objTXs.transactions[thecoin][thehash]) objTXs.transactions[thecoin][thehash] = {};
-        if (!objTXs.transactions[thecoin][thehash][theaddress]) objTXs.transactions[thecoin][thehash][theaddress] = {};
+        if (!objTXs.transactions[thecoin][lhash]) objTXs.transactions[thecoin][lhash] = {};
+        if (!objTXs.transactions[thecoin][lhash][laddress]) objTXs.transactions[thecoin][lhash][laddress] = {};
 
         // We're always going to use the values from the transaction pull
         let objhash = {
@@ -75,7 +83,7 @@ function ProcessCoinAddressTransactions(thecoin, theaddress, A_txs) {
             , "time_utc": thehash_API.time_utc
         };
 
-        objTXs.transactions[thecoin][thehash][theaddress] = objhash;
+        objTXs.transactions[thecoin][lhash][laddress] = objhash;
         // create the list of dates we need to pull historical transaction values for
         let needratehistory = false;
         if (!fileCRch[thehash_API.time_utc]) {

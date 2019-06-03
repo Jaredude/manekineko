@@ -47,8 +47,9 @@ let process = function(objP) {
             objP.TXPROCESSOR_MAIN(objP.COIN, objP.ADDRESS.address, A_response)
             processcount--;
         }).catch((err) => {
-            console.log(objP.COIN + ' ' + objP.ADDRESS);
+            console.log(objP.COIN + ' ' + objP.ADDRESS.address);
             console.log(err);
+            console.log(url_tx_coin_address);
             processcount--;
         })
     ;
