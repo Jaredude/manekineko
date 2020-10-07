@@ -4,7 +4,7 @@
   "description": "crypto currency coin tracking for miners",
   "main": "app.js",
   "dependencies": {
-    "papaparse": "^4.6.3"
+    "papaparse": "^5.3.0"
   },
   "devDependencies": {
     "axios": "^0.19.0"
